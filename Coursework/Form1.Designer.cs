@@ -48,6 +48,7 @@
             this.picDisplay.Size = new System.Drawing.Size(788, 474);
             this.picDisplay.TabIndex = 0;
             this.picDisplay.TabStop = false;
+            this.picDisplay.Click += new System.EventHandler(this.picDisplay_Click);
             this.picDisplay.MouseMove += new System.Windows.Forms.MouseEventHandler(this.picDisplay_MouseMove);
             // 
             // timer1
@@ -60,7 +61,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(842, 9);
+            this.label1.Location = new System.Drawing.Point(830, 93);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(90, 32);
             this.label1.TabIndex = 1;
@@ -68,9 +69,9 @@
             // 
             // stopBtn
             // 
-            this.stopBtn.Location = new System.Drawing.Point(842, 49);
+            this.stopBtn.Location = new System.Drawing.Point(830, 145);
             this.stopBtn.Name = "stopBtn";
-            this.stopBtn.Size = new System.Drawing.Size(94, 29);
+            this.stopBtn.Size = new System.Drawing.Size(94, 44);
             this.stopBtn.TabIndex = 2;
             this.stopBtn.Text = "Стоп/старт";
             this.stopBtn.UseVisualStyleBackColor = true;
@@ -78,9 +79,9 @@
             // 
             // stepBtn
             // 
-            this.stepBtn.Location = new System.Drawing.Point(842, 84);
+            this.stepBtn.Location = new System.Drawing.Point(830, 195);
             this.stepBtn.Name = "stepBtn";
-            this.stepBtn.Size = new System.Drawing.Size(94, 29);
+            this.stepBtn.Size = new System.Drawing.Size(94, 38);
             this.stepBtn.TabIndex = 3;
             this.stepBtn.Text = "Шаг";
             this.stepBtn.UseVisualStyleBackColor = true;
@@ -88,7 +89,7 @@
             // 
             // timeTB
             // 
-            this.timeTB.Location = new System.Drawing.Point(830, 148);
+            this.timeTB.Location = new System.Drawing.Point(815, 303);
             this.timeTB.Maximum = 1000;
             this.timeTB.Minimum = 40;
             this.timeTB.Name = "timeTB";
@@ -100,17 +101,17 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(815, 130);
+            this.label2.Location = new System.Drawing.Point(815, 248);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(160, 20);
+            this.label2.Size = new System.Drawing.Size(94, 40);
             this.label2.TabIndex = 5;
-            this.label2.Text = "Замедление времени";
+            this.label2.Text = "Замедление\r\nвремени";
             // 
             // vectorsBtn
             // 
-            this.vectorsBtn.Location = new System.Drawing.Point(842, 190);
+            this.vectorsBtn.Location = new System.Drawing.Point(830, 365);
             this.vectorsBtn.Name = "vectorsBtn";
-            this.vectorsBtn.Size = new System.Drawing.Size(94, 29);
+            this.vectorsBtn.Size = new System.Drawing.Size(94, 43);
             this.vectorsBtn.TabIndex = 6;
             this.vectorsBtn.Text = "Вектора";
             this.vectorsBtn.UseVisualStyleBackColor = true;
@@ -120,7 +121,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(986, 512);
+            this.ClientSize = new System.Drawing.Size(959, 574);
             this.Controls.Add(this.vectorsBtn);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.timeTB);

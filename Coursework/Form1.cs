@@ -48,14 +48,22 @@ namespace Coursework
 
         private void picDisplay_MouseMove(object sender, MouseEventArgs e)
         {
-            emitter.MouseX = e.X;
-            emitter.MouseY = e.Y;
+            emitter.impactPoint.X = e.X;
+            emitter.impactPoint.Y = e.Y;
         }
 
         private void stopBtn_Click(object sender, EventArgs e)
         {
             timeStopped = !timeStopped;
-        }
+            if (timeStopped)
+            {
+                timer1.Interval = 40;
+            }
+            else
+            {
+                timer1.Interval = timeTB.Value;
+            }
+    }
 
         private void stepBtn_Click(object sender, EventArgs e)
         {
@@ -71,12 +79,27 @@ namespace Coursework
 
         private void timeTB_Scroll(object sender, EventArgs e)
         {
-            timer1.Interval = timeTB.Value;
+            if (!timeStopped)
+            {
+                timer1.Interval = timeTB.Value;
+            }
         }
 
         private void vectorsBtn_Click(object sender, EventArgs e)
         {
-            emitter.debugMode = !emitter.debugMode;
+            emitter.vectorsMode = !emitter.vectorsMode;
+        }
+
+        private void picDisplay_Click(object sender, EventArgs e)
+        {
+            if (emitter.impactPoint is AntiGravityPoint)
+            {
+                emitter.impactPoint = new GravityPoint();
+            }
+            else
+            {
+                emitter.impactPoint = new AntiGravityPoint();
+            }
         }
     }
 }

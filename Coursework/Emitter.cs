@@ -7,31 +7,42 @@ namespace Coursework
 {
     public class Emitter
     {
-        private int ParticlesCount = 500; // Кол-во частиц
         List<Particle> particles = new List<Particle>(); // Список частиц
-        public int MouseX = 0;
-        public int MouseY = 0;
+        public IImpactPoint impactPoint = new AntiGravityPoint();
+
+        public int X = 0;
+        public int Y = 0;
+        private int ParticlesCount = 500; // Кол-во частиц
+        private int Direction = 0; // Направление
+        private int Spreading = 360; // Разброс частиц
+        private int SpeedMin = 1;
+        private int SpeedMax = 10;
+        private int RadiusMin = 4;
+        private int RadiusMax = 15;
+        public int LifeMin = 20;
+        public int LifeMax = 100;
 
         public float GravitationX = 0;
         public float GravitationY = 1;
 
-        public bool debugMode;
+        public bool vectorsMode;
 
 
         // Сброс частицы
         public virtual void ResetParticle(Particle particle)
         {
-            particle.Life = 20 + Particle.rnd.Next(100);
-            particle.X = MouseX;
-            particle.Y = MouseY;
+            particle.Life = Particle.rnd.Next(LifeMin, LifeMax);
 
-            var direction = (double)Particle.rnd.Next(360);
-            var speed = 1 + Particle.rnd.Next(10);
+            particle.X = X;
+            particle.Y = Y;
+
+            var direction = Direction + (double)Particle.rnd.Next(Spreading) - Spreading / 2;
+            var speed = Particle.rnd.Next(SpeedMin, SpeedMax);
 
             particle.SpeedX = (float)(Math.Cos(direction / 180 * Math.PI) * speed);
             particle.SpeedY = -(float)(Math.Sin(direction / 180 * Math.PI) * speed);
 
-            particle.Radius = 2 + Particle.rnd.Next(10);
+            particle.Radius = Particle.rnd.Next(RadiusMin, RadiusMax);
         }
 
         // Пересчет состояния системы
@@ -41,7 +52,7 @@ namespace Coursework
             foreach (var particle in particles)
             {
                 particle.Life--;
-                if (particle.Life < 0)
+                if (particle.Life <= 0)
                 {
                     ResetParticle(particle);
                 }
@@ -49,6 +60,8 @@ namespace Coursework
                 {
                     particle.SpeedX += GravitationX;
                     particle.SpeedY += GravitationY;
+
+                    impactPoint.ImpactParticle(particle);
 
                     particle.X += particle.SpeedX;
                     particle.Y += particle.SpeedY;
@@ -77,7 +90,8 @@ namespace Coursework
             foreach (var particle in particles)
             {
                 particle.Draw(g);
-                if (debugMode)
+
+                if (vectorsMode)
                 {
                     particle.DrawVector(g);
                 } 
