@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 
 namespace Coursework
 {
     public class Emitter
     {
         List<Particle> particles = new List<Particle>(); // Список частиц
-        public IImpactPoint impactPoint = new AntiGravityPoint();
+        public IImpactPoint impactPoint = null;
 
         public int X = 0;
         public int Y = 0;
@@ -27,6 +28,8 @@ namespace Coursework
 
         public bool vectorsMode;
 
+        public int MouseX = 0;
+        public int MouseY = 0;
 
         // Сброс частицы
         public virtual void ResetParticle(Particle particle)
@@ -58,13 +61,16 @@ namespace Coursework
                 }
                 else
                 {
+                    particle.X += particle.SpeedX;
+                    particle.Y += particle.SpeedY;
+
                     particle.SpeedX += GravitationX;
                     particle.SpeedY += GravitationY;
 
-                    impactPoint.ImpactParticle(particle);
-
-                    particle.X += particle.SpeedX;
-                    particle.Y += particle.SpeedY;
+                    if (impactPoint != null)
+                    {
+                        impactPoint.ImpactParticle(particle);
+                    }
                 }
             }
 
@@ -94,8 +100,25 @@ namespace Coursework
                 if (vectorsMode)
                 {
                     particle.DrawVector(g);
-                } 
+                }
+
+
+                if (TouchesMouse(particle, g))
+                {
+                    particle.DrawInfo(g);
+                }
             }
+        }
+
+        public bool TouchesMouse(Particle particle, Graphics g)
+        {
+            Point point = new Point(MouseX, MouseY);
+
+            GraphicsPath particlePath = new GraphicsPath();
+            particlePath.AddEllipse(particle.X - particle.Radius, particle.Y - particle.Radius, particle.Radius * 2, particle.Radius * 2);
+            Region particleRegion = new Region(particlePath);
+
+            return particleRegion.IsVisible(point, g);
         }
     }
 }

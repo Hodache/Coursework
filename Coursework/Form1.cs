@@ -48,8 +48,14 @@ namespace Coursework
 
         private void picDisplay_MouseMove(object sender, MouseEventArgs e)
         {
-            emitter.impactPoint.X = e.X;
-            emitter.impactPoint.Y = e.Y;
+            if (emitter.impactPoint != null)
+            {
+                emitter.impactPoint.X = e.X;
+                emitter.impactPoint.Y = e.Y;
+            }
+
+            emitter.MouseX = e.X;
+            emitter.MouseY = e.Y;
         }
 
         private void stopBtn_Click(object sender, EventArgs e)
@@ -67,12 +73,14 @@ namespace Coursework
 
         private void stepBtn_Click(object sender, EventArgs e)
         {
-            if (timeStopped)
+            // Если время остановлено, меняем состояние системы и рендерим
+            if (timeStopped) 
             {
                 var g = Graphics.FromImage(picDisplay.Image);
                 emitter.UpdateState();
                 g.Clear(Color.Black);
                 emitter.Render(g);
+                
                 picDisplay.Invalidate();
             }
         }
@@ -92,13 +100,17 @@ namespace Coursework
 
         private void picDisplay_Click(object sender, EventArgs e)
         {
-            if (emitter.impactPoint is AntiGravityPoint)
+            if (emitter.impactPoint == null)
             {
                 emitter.impactPoint = new GravityPoint();
             }
-            else
+            else if (emitter.impactPoint is GravityPoint)
             {
                 emitter.impactPoint = new AntiGravityPoint();
+            }
+            else 
+            {
+                emitter.impactPoint = null;
             }
         }
     }

@@ -50,5 +50,34 @@ namespace Coursework
 
             g.DrawLine(pen, X, Y, X + SpeedX, Y + SpeedY);
         }
+
+        public void DrawInfo(Graphics g)
+        {
+            var stringFormat = new StringFormat();
+            stringFormat.Alignment = StringAlignment.Center;
+            stringFormat.LineAlignment = StringAlignment.Center;
+
+            var text = $"X: {X}\nY: {Y}\nLife: {Life}";
+            var font = new Font("Verdana", 10);
+
+            var size = g.MeasureString(text, font);
+
+            g.FillRectangle(
+                new SolidBrush(Color.FromArgb(120, Color.Gray)),
+                X - size.Width / 2,
+                Y - size.Height / 2,
+                size.Width,
+                size.Height
+            );
+
+            g.DrawString(
+                text,
+                font,
+                new SolidBrush(Color.White),
+                X,
+                Y,
+                stringFormat
+            );
+        }
     }
 }

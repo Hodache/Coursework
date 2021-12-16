@@ -121,7 +121,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(959, 574);
+            this.ClientSize = new System.Drawing.Size(975, 638);
             this.Controls.Add(this.vectorsBtn);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.timeTB);
