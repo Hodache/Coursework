@@ -10,6 +10,7 @@ namespace Coursework
     {
         List<Particle> particles = new List<Particle>(); // Список частиц
         public IImpactPoint impactPoint = null;
+        public List<ParticleCounter> counters = new List<ParticleCounter>();
 
         public int X = 0;
         public int Y = 0;
@@ -107,6 +108,18 @@ namespace Coursework
                 {
                     particle.DrawInfo(g);
                 }
+            }
+
+            foreach (var counter in counters)
+            {
+                foreach (var particle in particles)
+                {
+                    if (counter.Overlaps(particle, g))
+                    {
+                        counter.Overlap(particle, this);
+                    }
+                }
+                counter.Draw(g);
             }
         }
 

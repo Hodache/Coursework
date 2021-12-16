@@ -69,25 +69,29 @@ namespace Coursework
             {
                 timer1.Interval = timeTB.Value;
             }
-    }
+        }
 
         private void stepBtn_Click(object sender, EventArgs e)
         {
-            // Если время остановлено, меняем состояние системы и рендерим
-            if (timeStopped) 
+            if (timeStopped)
             {
                 var g = Graphics.FromImage(picDisplay.Image);
                 emitter.UpdateState();
+
                 g.Clear(Color.Black);
                 emitter.Render(g);
-                
+
                 picDisplay.Invalidate();
             }
         }
 
         private void timeTB_Scroll(object sender, EventArgs e)
         {
-            if (!timeStopped)
+            if (timeStopped)
+            {
+                timer1.Interval = 40;
+            }
+            else
             {
                 timer1.Interval = timeTB.Value;
             }
@@ -98,20 +102,36 @@ namespace Coursework
             emitter.vectorsMode = !emitter.vectorsMode;
         }
 
-        private void picDisplay_Click(object sender, EventArgs e)
+        private void picDisplay_MouseDown(object sender, MouseEventArgs e)
         {
-            if (emitter.impactPoint == null)
+            if(e.Button == MouseButtons.Left)
             {
-                emitter.impactPoint = new GravityPoint();
+                if (emitter.impactPoint == null)
+                {
+                    emitter.impactPoint = new GravityPoint();
+                }
+                else if (emitter.impactPoint is GravityPoint)
+                {
+                    emitter.impactPoint = new AntiGravityPoint();
+                }
+                else
+                {
+                    emitter.impactPoint = null;
+                }
             }
-            else if (emitter.impactPoint is GravityPoint)
+            else if(e.Button == MouseButtons.Right && emitter.counters.Count < 6)
             {
-                emitter.impactPoint = new AntiGravityPoint();
+                emitter.counters.Add(new ParticleCounter {
+                                        X = e.X,
+                                        Y = e.Y,
+                                        Radius = 50
+                                    });
             }
-            else 
+            else if (e.Button == MouseButtons.Middle)
             {
-                emitter.impactPoint = null;
+                emitter.counters.Clear();
             }
+            
         }
     }
 }
