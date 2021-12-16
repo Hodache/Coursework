@@ -5,7 +5,7 @@ using System.Drawing;
 
 namespace Coursework
 {
-    class Particle
+    public class Particle
     {
         public int Radius; // Радиус частицы
         public float X; // Координата x

@@ -1,6 +1,6 @@
 ﻿namespace Coursework
 {
-    partial class timeTrackBar
+    partial class MainWindow
     {
         /// <summary>
         ///  Required designer variable.
@@ -36,6 +36,7 @@
             this.stepBtn = new System.Windows.Forms.Button();
             this.timeTB = new System.Windows.Forms.TrackBar();
             this.label2 = new System.Windows.Forms.Label();
+            this.vectorsBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.timeTB)).BeginInit();
             this.SuspendLayout();
@@ -59,7 +60,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(827, 9);
+            this.label1.Location = new System.Drawing.Point(842, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(90, 32);
             this.label1.TabIndex = 1;
@@ -67,7 +68,7 @@
             // 
             // stopBtn
             // 
-            this.stopBtn.Location = new System.Drawing.Point(827, 49);
+            this.stopBtn.Location = new System.Drawing.Point(842, 49);
             this.stopBtn.Name = "stopBtn";
             this.stopBtn.Size = new System.Drawing.Size(94, 29);
             this.stopBtn.TabIndex = 2;
@@ -77,7 +78,7 @@
             // 
             // stepBtn
             // 
-            this.stepBtn.Location = new System.Drawing.Point(827, 84);
+            this.stepBtn.Location = new System.Drawing.Point(842, 84);
             this.stepBtn.Name = "stepBtn";
             this.stepBtn.Size = new System.Drawing.Size(94, 29);
             this.stepBtn.TabIndex = 3;
@@ -87,7 +88,7 @@
             // 
             // timeTB
             // 
-            this.timeTB.Location = new System.Drawing.Point(815, 148);
+            this.timeTB.Location = new System.Drawing.Point(830, 148);
             this.timeTB.Maximum = 1000;
             this.timeTB.Minimum = 40;
             this.timeTB.Name = "timeTB";
@@ -105,11 +106,22 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "Замедление времени";
             // 
-            // timeTrackBar
+            // vectorsBtn
+            // 
+            this.vectorsBtn.Location = new System.Drawing.Point(842, 190);
+            this.vectorsBtn.Name = "vectorsBtn";
+            this.vectorsBtn.Size = new System.Drawing.Size(94, 29);
+            this.vectorsBtn.TabIndex = 6;
+            this.vectorsBtn.Text = "Вектора";
+            this.vectorsBtn.UseVisualStyleBackColor = true;
+            this.vectorsBtn.Click += new System.EventHandler(this.vectorsBtn_Click);
+            // 
+            // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(951, 513);
+            this.ClientSize = new System.Drawing.Size(986, 512);
+            this.Controls.Add(this.vectorsBtn);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.timeTB);
             this.Controls.Add(this.stepBtn);
@@ -117,7 +129,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.picDisplay);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "timeTrackBar";
+            this.Name = "MainWindow";
             this.Text = "Система частиц";
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.timeTB)).EndInit();
@@ -135,6 +147,7 @@
         private System.Windows.Forms.Button stepBtn;
         private System.Windows.Forms.TrackBar timeTB;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button vectorsBtn;
     }
 }
 

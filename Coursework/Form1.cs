@@ -10,14 +10,20 @@ using System.Windows.Forms;
 
 namespace Coursework
 {
-    public partial class timeTrackBar : Form
+    public partial class MainWindow : Form
     {
-        Emitter emitter = new Emitter();
+        Emitter emitter;
         bool timeStopped = false;
 
-        public timeTrackBar()
+        public MainWindow()
         {
             InitializeComponent();
+
+            emitter = new TopEmitter
+            {
+                Width = picDisplay.Width,
+                GravitationY = 0.5f
+            };
 
             // Привязка изображения к pb
             picDisplay.Image = new Bitmap(picDisplay.Width, picDisplay.Height);
@@ -66,6 +72,11 @@ namespace Coursework
         private void timeTB_Scroll(object sender, EventArgs e)
         {
             timer1.Interval = timeTB.Value;
+        }
+
+        private void vectorsBtn_Click(object sender, EventArgs e)
+        {
+            emitter.debugMode = !emitter.debugMode;
         }
     }
 }
