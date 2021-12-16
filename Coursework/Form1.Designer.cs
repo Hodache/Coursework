@@ -1,6 +1,6 @@
 ﻿namespace Coursework
 {
-    partial class Form1
+    partial class timeTrackBar
     {
         /// <summary>
         ///  Required designer variable.
@@ -31,7 +31,13 @@
             this.components = new System.ComponentModel.Container();
             this.picDisplay = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.label1 = new System.Windows.Forms.Label();
+            this.stopBtn = new System.Windows.Forms.Button();
+            this.stepBtn = new System.Windows.Forms.Button();
+            this.timeTB = new System.Windows.Forms.TrackBar();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timeTB)).BeginInit();
             this.SuspendLayout();
             // 
             // picDisplay
@@ -49,17 +55,74 @@
             this.timer1.Interval = 40;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // Form1
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(827, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(90, 32);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Debug";
+            // 
+            // stopBtn
+            // 
+            this.stopBtn.Location = new System.Drawing.Point(827, 49);
+            this.stopBtn.Name = "stopBtn";
+            this.stopBtn.Size = new System.Drawing.Size(94, 29);
+            this.stopBtn.TabIndex = 2;
+            this.stopBtn.Text = "Стоп/старт";
+            this.stopBtn.UseVisualStyleBackColor = true;
+            this.stopBtn.Click += new System.EventHandler(this.stopBtn_Click);
+            // 
+            // stepBtn
+            // 
+            this.stepBtn.Location = new System.Drawing.Point(827, 84);
+            this.stepBtn.Name = "stepBtn";
+            this.stepBtn.Size = new System.Drawing.Size(94, 29);
+            this.stepBtn.TabIndex = 3;
+            this.stepBtn.Text = "Шаг";
+            this.stepBtn.UseVisualStyleBackColor = true;
+            this.stepBtn.Click += new System.EventHandler(this.stepBtn_Click);
+            // 
+            // timeTB
+            // 
+            this.timeTB.Location = new System.Drawing.Point(815, 148);
+            this.timeTB.Maximum = 1000;
+            this.timeTB.Minimum = 40;
+            this.timeTB.Name = "timeTB";
+            this.timeTB.Size = new System.Drawing.Size(130, 56);
+            this.timeTB.TabIndex = 4;
+            this.timeTB.Value = 40;
+            this.timeTB.Scroll += new System.EventHandler(this.timeTB_Scroll);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(815, 130);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(160, 20);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Замедление времени";
+            // 
+            // timeTrackBar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(816, 514);
+            this.ClientSize = new System.Drawing.Size(951, 513);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.timeTB);
+            this.Controls.Add(this.stepBtn);
+            this.Controls.Add(this.stopBtn);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.picDisplay);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "Form1";
+            this.Name = "timeTrackBar";
             this.Text = "Система частиц";
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timeTB)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -67,6 +130,11 @@
 
         private System.Windows.Forms.PictureBox picDisplay;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button stopBtn;
+        private System.Windows.Forms.Button stepBtn;
+        private System.Windows.Forms.TrackBar timeTB;
+        private System.Windows.Forms.Label label2;
     }
 }
 
