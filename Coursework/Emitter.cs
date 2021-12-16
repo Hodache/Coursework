@@ -11,6 +11,11 @@ namespace Coursework
         List<Particle> particles = new List<Particle>(); // Список частиц
         public IImpactPoint impactPoint = null;
         public List<ParticleCounter> counters = new List<ParticleCounter>();
+        public ColoringCircle ColoringCircle = new ColoringCircle {
+            X = 0,
+            Y = 200,
+            Radius = 50
+        };
 
         public int X = 0;
         public int Y = 0;
@@ -23,6 +28,7 @@ namespace Coursework
         private int RadiusMax = 15;
         public int LifeMin = 20;
         public int LifeMax = 100;
+        public Color DefaultColor = Color.Orange;
 
         public float GravitationX = 0;
         public float GravitationY = 1;
@@ -47,10 +53,12 @@ namespace Coursework
             particle.SpeedY = -(float)(Math.Sin(direction / 180 * Math.PI) * speed);
 
             particle.Radius = Particle.rnd.Next(RadiusMin, RadiusMax);
+
+            particle.Color = DefaultColor;
         }
 
         // Пересчет состояния системы
-        public void UpdateState()
+        public void UpdateState(Graphics g)
         {
             // Пересчет свойств частиц
             foreach (var particle in particles)
@@ -71,6 +79,23 @@ namespace Coursework
                     if (impactPoint != null)
                     {
                         impactPoint.ImpactParticle(particle);
+                    }
+                }
+
+                if (ColoringCircle.Overlaps(particle, g))
+                {
+                    ColoringCircle.Overlap(particle, this);
+                }
+            }
+
+            // Изменение состояния счетчиков
+            foreach (var counter in counters)
+            {
+                foreach (var particle in particles)
+                {
+                    if (counter.Overlaps(particle, g))
+                    {
+                        counter.Overlap(particle, this);
                     }
                 }
             }
@@ -110,17 +135,14 @@ namespace Coursework
                 }
             }
 
+            // Отрисовка счетчиков
             foreach (var counter in counters)
             {
-                foreach (var particle in particles)
-                {
-                    if (counter.Overlaps(particle, g))
-                    {
-                        counter.Overlap(particle, this);
-                    }
-                }
                 counter.Draw(g);
             }
+            
+            // Отрисовка окрашивающей области
+            ColoringCircle.Draw(g);
         }
 
         public bool TouchesMouse(Particle particle, Graphics g)

@@ -37,8 +37,10 @@
             this.timeTB = new System.Windows.Forms.TrackBar();
             this.label2 = new System.Windows.Forms.Label();
             this.vectorsBtn = new System.Windows.Forms.Button();
+            this.circleTB = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.timeTB)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.circleTB)).BeginInit();
             this.SuspendLayout();
             // 
             // picDisplay
@@ -117,11 +119,21 @@
             this.vectorsBtn.UseVisualStyleBackColor = true;
             this.vectorsBtn.Click += new System.EventHandler(this.vectorsBtn_Click);
             // 
+            // circleTB
+            // 
+            this.circleTB.Location = new System.Drawing.Point(12, 492);
+            this.circleTB.Maximum = 100;
+            this.circleTB.Name = "circleTB";
+            this.circleTB.Size = new System.Drawing.Size(788, 56);
+            this.circleTB.TabIndex = 7;
+            this.circleTB.Scroll += new System.EventHandler(this.circleTB_Scroll);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(935, 500);
+            this.ClientSize = new System.Drawing.Size(945, 570);
+            this.Controls.Add(this.circleTB);
             this.Controls.Add(this.vectorsBtn);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.timeTB);
@@ -134,6 +146,7 @@
             this.Text = "Система частиц";
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.timeTB)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.circleTB)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -149,6 +162,7 @@
         private System.Windows.Forms.TrackBar timeTB;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button vectorsBtn;
+        private System.Windows.Forms.TrackBar circleTB;
     }
 }
 

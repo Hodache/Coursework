@@ -13,6 +13,7 @@ namespace Coursework
         public float SpeedX; // Скорость по X
         public float SpeedY; // Скорость по Y
         public float Life; // Время жизни
+        public Color Color = Color.Orange;
 
         public static Random rnd = new Random();
 
@@ -34,7 +35,7 @@ namespace Coursework
             float k = Math.Min(1f, Life / 100); // Коэф. прозрачности
 
             int alpha = (int)(k * 255); // Значение альфа-канала
-            var color = Color.FromArgb(alpha, Color.Orange); // Цвет
+            var color = Color.FromArgb(alpha, Color); // Цвет
 
             var brush = new SolidBrush(color); // Кисть
 

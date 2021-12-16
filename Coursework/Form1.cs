@@ -31,16 +31,15 @@ namespace Coursework
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            var g = Graphics.FromImage(picDisplay.Image);
+
             if (!timeStopped)
             {
-                emitter.UpdateState();
+                emitter.UpdateState(g);
             }
 
-            using (var g = Graphics.FromImage(picDisplay.Image))
-            {
                 g.Clear(Color.Black);
                 emitter.Render(g);
-            }
 
             // Обновление pb
             picDisplay.Invalidate();
@@ -76,7 +75,7 @@ namespace Coursework
             if (timeStopped)
             {
                 var g = Graphics.FromImage(picDisplay.Image);
-                emitter.UpdateState();
+                emitter.UpdateState(g);
 
                 g.Clear(Color.Black);
                 emitter.Render(g);
@@ -132,6 +131,11 @@ namespace Coursework
                 emitter.counters.Clear();
             }
             
+        }
+
+        private void circleTB_Scroll(object sender, EventArgs e)
+        {
+            emitter.ColoringCircle.X = picDisplay.Width * ((float)circleTB.Value / 100);
         }
     }
 }
